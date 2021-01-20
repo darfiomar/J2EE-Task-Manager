@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: nalini(University of Southern California)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xsoft.models.Tache" table="Tache" lazy="false">
+		<id name="numero" column="Numero" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="project" cascade="lock" column="ProjetCode" class="com.xsoft.models.Projet" not-null="false" lazy="proxy" access="field">
+		</many-to-one>
+		<many-to-one name="user" cascade="lock" column="UtilisateurNumero" class="com.xsoft.models.Utilisateur" not-null="false" lazy="proxy" access="field">
+		</many-to-one>
+		<property name="description" column="Description" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="statut" column="Statut" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="duree" column="Duree" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="datefin" column="Datefin" type="date" not-null="false" lazy="false"/>
+		<property name="datedebut" column="Datedebut" type="date" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>

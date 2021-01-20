@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: nalini(University of Southern California)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xsoft.models.Utilisateur" table="Utilisateur" lazy="false">
+		<id name="numero" column="Numero" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="nom" column="Nom" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="prenom" column="Prenom" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="email" column="Email" unique="true" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="motdepasse" column="Motdepasse" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="role" column="Role" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_Tasks" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="UtilisateurNumero" not-null="false"/>
+			<one-to-many class="com.xsoft.models.Tache"/>
+		</set>
+	</class>
+</hibernate-mapping>
